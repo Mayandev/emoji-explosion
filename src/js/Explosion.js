@@ -4,7 +4,7 @@ export class Explosion {
   constructor(originX, originY, emojiCanvases) {
     this.emojiCanvases = emojiCanvases;
     this.particles = [];
-    this.makeParticles(20, originX, originY);
+    this.makeParticles(50, originX, originY);
   }
 
   /**

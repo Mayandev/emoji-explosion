@@ -6,7 +6,7 @@ let mojeCanvases = null;
 let mojies = null;
 
 
-function doSecretEmojiCanvas(txt){
+function doSecretEmojiCanvas(txt) {
   const height = 256;
 
   const singleMojeCanvas = document.createElement("canvas");
@@ -17,9 +17,9 @@ function doSecretEmojiCanvas(txt){
 
   // singleMojeContext.clearRect(0, 0, singleMojeCanvas.width, singleMojeCanvas.height);
 
-  singleMojeContext.translate(singleMojeCanvas.width / 2,singleMojeCanvas.height / 2);
+  singleMojeContext.translate(singleMojeCanvas.width / 2, singleMojeCanvas.height / 2);
 
-  singleMojeContext.font=`${ height }px Georgia`;
+  singleMojeContext.font = `${height}px Georgia`;
   const { width } = singleMojeContext.measureText(txt);
   singleMojeContext.fillText(txt, 0 - (width / 2), 0 + (height / 2.35));
 
@@ -33,7 +33,7 @@ let splosions = []
 let doingIt = false
 let cw = null;
 
-function doit(){
+function doit() {
   splosions = splosions.filter((splode) => !splode.isOver());
 
   if (splosions.length) {
@@ -45,15 +45,15 @@ function doit(){
   }
 }
 
-function setup(x, y){
-  const boom = new Explosion(x,y, mojeCanvases);
+function setup(x, y) {
+  const boom = new Explosion(x, y, mojeCanvases);
   boom.run();
 
   splosions.push(boom)
 
   if (!doingIt) {
     requestAnimationFrame(doit);
-  } 
+  }
 
 }
 document.addEventListener("DOMContentLoaded", (e) => {
@@ -64,37 +64,48 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   const input = document.getElementById("moje")
   const inputHeight = input.clientHeight;
-  const defaultEmoji = "🐶";
+  const defaultEmoji = "🚀,🔥,🌟,💥,🌎,💖,😎,🤩,🥳,🤡,🥰";
   const clientHeight = document.documentElement.clientHeight;
   const clientWidth = document.documentElement.clientWidth;
-  canvasDom.setAttribute("height",clientHeight - inputHeight);
-  canvasDom.setAttribute("width",clientWidth);
+  canvasDom.setAttribute("height", clientHeight - inputHeight);
+  canvasDom.setAttribute("width", clientWidth);
 
   if (!input.value.length) {
-    input.z = localStorage.lastEmoje || defaultEmoji;
+    input.z = localStorage.lastEmoje || '';
   }
 
   const refreshMojeCanvases = () => {
-    mojeCanvases = input.value.length > 0 ? input.value.split(/\s+|,/).map((moje) => doSecretEmojiCanvas(moje)) : ['🐶'].map((moje) => doSecretEmojiCanvas(moje));
+    mojeCanvases = input.value.length > 0 ? input.value.split(/\s+|,/).map((moje) => doSecretEmojiCanvas(moje)) : defaultEmoji.split(',').map((moje) => doSecretEmojiCanvas(moje));
   }
-  
+
   refreshMojeCanvases();
 
-  const persistInputValue = function(e) {
+  const persistInputValue = function (e) {
     localStorage.lastEmoje = this.value;
     refreshMojeCanvases();
   }
 
 
   input.addEventListener("blur", persistInputValue);
-  
+
   let x, y;
-  setInterval(() => {
-    x =  Math.random() * clientWidth - clientWidth / 2;
-    y =  Math.random() * clientHeight - clientHeight / 2;
-    console.log(x, y);
-    
-    setup(x, y)
-  }, 500);
-  
+  function timerFun() {
+
+    //要执行的操作
+
+    var timer = setTimeout(function () {
+      x = Math.random() * clientWidth - clientWidth / 2;
+      y = Math.random() * clientHeight - clientHeight / 2;
+      console.log(x, y);
+
+      setup(x, y)
+
+      timerFun();
+
+      clearTimeout(timer)
+
+    }, 1000)
+
+  }
+  timerFun();
 })
