@@ -1,4 +1,4 @@
-name: moji-explosion
+name: emoji-explosion
 on: 
   push:
     branches:
