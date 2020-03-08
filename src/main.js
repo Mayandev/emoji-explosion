@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   const input = document.getElementById("moje")
   const inputHeight = input.clientHeight;
-  const defaultEmoji = "🚀,🔥,🌟,💥,🌎,💖,😎,🤩,🥳,🤡,🥰";
+  const defaultEmoji = "🚀 🔥 🌟 💥 🌎 💖 😎 🤩 🥳 🤡 🥰";
   const clientHeight = document.documentElement.clientHeight;
   const clientWidth = document.documentElement.clientWidth;
   canvasDom.setAttribute("height", clientHeight - inputHeight);
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   }
 
   const refreshMojeCanvases = () => {
-    mojeCanvases = input.value.length > 0 ? input.value.split(/\s+|,/).map((moje) => doSecretEmojiCanvas(moje)) : defaultEmoji.split(',').map((moje) => doSecretEmojiCanvas(moje));
+    mojeCanvases = input.value.length > 0 ? input.value.split(/\s+|\ /).map((moje) => doSecretEmojiCanvas(moje)) : defaultEmoji.split(' ').map((moje) => doSecretEmojiCanvas(moje));
   }
 
   refreshMojeCanvases();
@@ -99,12 +99,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
       console.log(x, y);
 
       setup(x, y)
+      clearTimeout(timer);
 
       timerFun();
 
-      clearTimeout(timer)
 
-    }, 1000)
+    }, 1000 + Math.random() * 500)
 
   }
   timerFun();

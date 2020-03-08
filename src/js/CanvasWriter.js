@@ -41,8 +41,8 @@ export class CanvasWriter {
     this.move(coordX, coordY);
     this.context.rotate(radians);
 
-    const targetWidth = canvasToDrawFrom.width * (0.25 + z);
-    const targetHeight = canvasToDrawFrom.height * (0.25 + z);
+    const targetWidth = canvasToDrawFrom.width * (0.1 + z);
+    const targetHeight = canvasToDrawFrom.height * (0.1 + z);
 
     this.context.drawImage(canvasToDrawFrom,
       0 - (targetWidth / 2),
