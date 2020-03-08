@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       timerFun();
 
 
-    }, 1500 + Math.random() * 500)
+    }, 1000 + Math.random() * 1000)
 
   }
   timerFun();
