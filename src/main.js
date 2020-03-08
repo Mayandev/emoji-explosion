@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   const input = document.getElementById("moje")
   const inputHeight = input.clientHeight;
-  const defaultEmoji = "🚀 🔥 🌟 💥 🌎 💖 😎 🤩 🥳 🤡 🥰";
+  const defaultEmoji = "🚀 🌟 💖 😎 🤩 🥳 🤡 🥰 🌈";
   const clientHeight = document.documentElement.clientHeight;
   const clientWidth = document.documentElement.clientWidth;
   canvasDom.setAttribute("height", clientHeight - inputHeight);
@@ -100,11 +100,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
       setup(x, y)
       clearTimeout(timer);
+      timer = null;
 
       timerFun();
 
 
-    }, 1000 + Math.random() * 500)
+    }, 1500 + Math.random() * 500)
 
   }
   timerFun();
